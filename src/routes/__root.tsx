@@ -77,14 +77,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "FootballVerse AI — Predict. Compete. Beat AI." },
+      { name: "description", content: "Predict match scores, build your Football IQ, climb leaderboards, and battle friends with AI Baba." },
+      { name: "author", content: "FootballVerse AI" },
+      { property: "og:title", content: "FootballVerse AI — Predict. Compete. Beat AI." },
+      { property: "og:description", content: "Football predictions, leagues, battles, and an AI oracle named Baba." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {

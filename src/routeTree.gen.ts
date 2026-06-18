@@ -9,15 +9,59 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WatchPartiesRouteImport } from './routes/watch-parties'
+import { Route as StoreRouteImport } from './routes/store'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as PremiumRouteImport } from './routes/premium'
+import { Route as PredictionsRouteImport } from './routes/predictions'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as MatchesRouteImport } from './routes/matches'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as LeaguesRouteImport } from './routes/leagues'
+import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as CommunityRouteImport } from './routes/community'
+import { Route as BattlesRouteImport } from './routes/battles'
+import { Route as AiBabaRouteImport } from './routes/ai-baba'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProfileUsernameRouteImport } from './routes/profile.$username'
 import { Route as OnboardingFavoriteTeamRouteImport } from './routes/onboarding.favorite-team'
+import { Route as MatchesIdRouteImport } from './routes/matches.$id'
+import { Route as LeaguesIdRouteImport } from './routes/leagues.$id'
 
+const WatchPartiesRoute = WatchPartiesRouteImport.update({
+  id: '/watch-parties',
+  path: '/watch-parties',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoreRoute = StoreRouteImport.update({
+  id: '/store',
+  path: '/store',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
   path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PremiumRoute = PremiumRouteImport.update({
+  id: '/premium',
+  path: '/premium',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PredictionsRoute = PredictionsRouteImport.update({
+  id: '/predictions',
+  path: '/predictions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MatchesRoute = MatchesRouteImport.update({
+  id: '/matches',
+  path: '/matches',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -25,9 +69,34 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LeaguesRoute = LeaguesRouteImport.update({
+  id: '/leagues',
+  path: '/leagues',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeaderboardRoute = LeaderboardRouteImport.update({
+  id: '/leaderboard',
+  path: '/leaderboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityRoute = CommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BattlesRoute = BattlesRouteImport.update({
+  id: '/battles',
+  path: '/battles',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiBabaRoute = AiBabaRouteImport.update({
+  id: '/ai-baba',
+  path: '/ai-baba',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -35,68 +104,226 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfileUsernameRoute = ProfileUsernameRouteImport.update({
+  id: '/profile/$username',
+  path: '/profile/$username',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OnboardingFavoriteTeamRoute = OnboardingFavoriteTeamRouteImport.update({
   id: '/onboarding/favorite-team',
   path: '/onboarding/favorite-team',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MatchesIdRoute = MatchesIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => MatchesRoute,
+} as any)
+const LeaguesIdRoute = LeaguesIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => LeaguesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-baba': typeof AiBabaRoute
+  '/battles': typeof BattlesRoute
+  '/community': typeof CommunityRoute
   '/dashboard': typeof DashboardRoute
+  '/leaderboard': typeof LeaderboardRoute
+  '/leagues': typeof LeaguesRouteWithChildren
   '/login': typeof LoginRoute
+  '/matches': typeof MatchesRouteWithChildren
+  '/notifications': typeof NotificationsRoute
+  '/predictions': typeof PredictionsRoute
+  '/premium': typeof PremiumRoute
   '/signup': typeof SignupRoute
+  '/store': typeof StoreRoute
+  '/watch-parties': typeof WatchPartiesRoute
+  '/leagues/$id': typeof LeaguesIdRoute
+  '/matches/$id': typeof MatchesIdRoute
   '/onboarding/favorite-team': typeof OnboardingFavoriteTeamRoute
+  '/profile/$username': typeof ProfileUsernameRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-baba': typeof AiBabaRoute
+  '/battles': typeof BattlesRoute
+  '/community': typeof CommunityRoute
   '/dashboard': typeof DashboardRoute
+  '/leaderboard': typeof LeaderboardRoute
+  '/leagues': typeof LeaguesRouteWithChildren
   '/login': typeof LoginRoute
+  '/matches': typeof MatchesRouteWithChildren
+  '/notifications': typeof NotificationsRoute
+  '/predictions': typeof PredictionsRoute
+  '/premium': typeof PremiumRoute
   '/signup': typeof SignupRoute
+  '/store': typeof StoreRoute
+  '/watch-parties': typeof WatchPartiesRoute
+  '/leagues/$id': typeof LeaguesIdRoute
+  '/matches/$id': typeof MatchesIdRoute
   '/onboarding/favorite-team': typeof OnboardingFavoriteTeamRoute
+  '/profile/$username': typeof ProfileUsernameRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai-baba': typeof AiBabaRoute
+  '/battles': typeof BattlesRoute
+  '/community': typeof CommunityRoute
   '/dashboard': typeof DashboardRoute
+  '/leaderboard': typeof LeaderboardRoute
+  '/leagues': typeof LeaguesRouteWithChildren
   '/login': typeof LoginRoute
+  '/matches': typeof MatchesRouteWithChildren
+  '/notifications': typeof NotificationsRoute
+  '/predictions': typeof PredictionsRoute
+  '/premium': typeof PremiumRoute
   '/signup': typeof SignupRoute
+  '/store': typeof StoreRoute
+  '/watch-parties': typeof WatchPartiesRoute
+  '/leagues/$id': typeof LeaguesIdRoute
+  '/matches/$id': typeof MatchesIdRoute
   '/onboarding/favorite-team': typeof OnboardingFavoriteTeamRoute
+  '/profile/$username': typeof ProfileUsernameRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/ai-baba'
+    | '/battles'
+    | '/community'
     | '/dashboard'
+    | '/leaderboard'
+    | '/leagues'
     | '/login'
+    | '/matches'
+    | '/notifications'
+    | '/predictions'
+    | '/premium'
     | '/signup'
+    | '/store'
+    | '/watch-parties'
+    | '/leagues/$id'
+    | '/matches/$id'
     | '/onboarding/favorite-team'
+    | '/profile/$username'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/login' | '/signup' | '/onboarding/favorite-team'
+  to:
+    | '/'
+    | '/ai-baba'
+    | '/battles'
+    | '/community'
+    | '/dashboard'
+    | '/leaderboard'
+    | '/leagues'
+    | '/login'
+    | '/matches'
+    | '/notifications'
+    | '/predictions'
+    | '/premium'
+    | '/signup'
+    | '/store'
+    | '/watch-parties'
+    | '/leagues/$id'
+    | '/matches/$id'
+    | '/onboarding/favorite-team'
+    | '/profile/$username'
   id:
     | '__root__'
     | '/'
+    | '/ai-baba'
+    | '/battles'
+    | '/community'
     | '/dashboard'
+    | '/leaderboard'
+    | '/leagues'
     | '/login'
+    | '/matches'
+    | '/notifications'
+    | '/predictions'
+    | '/premium'
     | '/signup'
+    | '/store'
+    | '/watch-parties'
+    | '/leagues/$id'
+    | '/matches/$id'
     | '/onboarding/favorite-team'
+    | '/profile/$username'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiBabaRoute: typeof AiBabaRoute
+  BattlesRoute: typeof BattlesRoute
+  CommunityRoute: typeof CommunityRoute
   DashboardRoute: typeof DashboardRoute
+  LeaderboardRoute: typeof LeaderboardRoute
+  LeaguesRoute: typeof LeaguesRouteWithChildren
   LoginRoute: typeof LoginRoute
+  MatchesRoute: typeof MatchesRouteWithChildren
+  NotificationsRoute: typeof NotificationsRoute
+  PredictionsRoute: typeof PredictionsRoute
+  PremiumRoute: typeof PremiumRoute
   SignupRoute: typeof SignupRoute
+  StoreRoute: typeof StoreRoute
+  WatchPartiesRoute: typeof WatchPartiesRoute
   OnboardingFavoriteTeamRoute: typeof OnboardingFavoriteTeamRoute
+  ProfileUsernameRoute: typeof ProfileUsernameRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/watch-parties': {
+      id: '/watch-parties'
+      path: '/watch-parties'
+      fullPath: '/watch-parties'
+      preLoaderRoute: typeof WatchPartiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/store': {
+      id: '/store'
+      path: '/store'
+      fullPath: '/store'
+      preLoaderRoute: typeof StoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/signup': {
       id: '/signup'
       path: '/signup'
       fullPath: '/signup'
       preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/premium': {
+      id: '/premium'
+      path: '/premium'
+      fullPath: '/premium'
+      preLoaderRoute: typeof PremiumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/predictions': {
+      id: '/predictions'
+      path: '/predictions'
+      fullPath: '/predictions'
+      preLoaderRoute: typeof PredictionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/matches': {
+      id: '/matches'
+      path: '/matches'
+      fullPath: '/matches'
+      preLoaderRoute: typeof MatchesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -106,11 +333,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/leagues': {
+      id: '/leagues'
+      path: '/leagues'
+      fullPath: '/leagues'
+      preLoaderRoute: typeof LeaguesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leaderboard': {
+      id: '/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/leaderboard'
+      preLoaderRoute: typeof LeaderboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community': {
+      id: '/community'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/battles': {
+      id: '/battles'
+      path: '/battles'
+      fullPath: '/battles'
+      preLoaderRoute: typeof BattlesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-baba': {
+      id: '/ai-baba'
+      path: '/ai-baba'
+      fullPath: '/ai-baba'
+      preLoaderRoute: typeof AiBabaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -120,6 +382,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profile/$username': {
+      id: '/profile/$username'
+      path: '/profile/$username'
+      fullPath: '/profile/$username'
+      preLoaderRoute: typeof ProfileUsernameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/onboarding/favorite-team': {
       id: '/onboarding/favorite-team'
       path: '/onboarding/favorite-team'
@@ -127,15 +396,63 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingFavoriteTeamRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/matches/$id': {
+      id: '/matches/$id'
+      path: '/$id'
+      fullPath: '/matches/$id'
+      preLoaderRoute: typeof MatchesIdRouteImport
+      parentRoute: typeof MatchesRoute
+    }
+    '/leagues/$id': {
+      id: '/leagues/$id'
+      path: '/$id'
+      fullPath: '/leagues/$id'
+      preLoaderRoute: typeof LeaguesIdRouteImport
+      parentRoute: typeof LeaguesRoute
+    }
   }
 }
 
+interface LeaguesRouteChildren {
+  LeaguesIdRoute: typeof LeaguesIdRoute
+}
+
+const LeaguesRouteChildren: LeaguesRouteChildren = {
+  LeaguesIdRoute: LeaguesIdRoute,
+}
+
+const LeaguesRouteWithChildren =
+  LeaguesRoute._addFileChildren(LeaguesRouteChildren)
+
+interface MatchesRouteChildren {
+  MatchesIdRoute: typeof MatchesIdRoute
+}
+
+const MatchesRouteChildren: MatchesRouteChildren = {
+  MatchesIdRoute: MatchesIdRoute,
+}
+
+const MatchesRouteWithChildren =
+  MatchesRoute._addFileChildren(MatchesRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiBabaRoute: AiBabaRoute,
+  BattlesRoute: BattlesRoute,
+  CommunityRoute: CommunityRoute,
   DashboardRoute: DashboardRoute,
+  LeaderboardRoute: LeaderboardRoute,
+  LeaguesRoute: LeaguesRouteWithChildren,
   LoginRoute: LoginRoute,
+  MatchesRoute: MatchesRouteWithChildren,
+  NotificationsRoute: NotificationsRoute,
+  PredictionsRoute: PredictionsRoute,
+  PremiumRoute: PremiumRoute,
   SignupRoute: SignupRoute,
+  StoreRoute: StoreRoute,
+  WatchPartiesRoute: WatchPartiesRoute,
   OnboardingFavoriteTeamRoute: OnboardingFavoriteTeamRoute,
+  ProfileUsernameRoute: ProfileUsernameRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

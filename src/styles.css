@@ -2,21 +2,16 @@
 @source "../src";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@import "@fontsource/bebas-neue/400.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+@import "@fontsource/jetbrains-mono/700.css";
 
-/*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
- */
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -25,7 +20,7 @@
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -46,11 +41,16 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
+
+  --color-stadium: var(--bg-stadium);
+  --color-stadium-soft: var(--bg-stadium-soft);
+  --color-pitch: var(--pitch-green);
+  --color-floodlight: var(--floodlight-gold);
+  --color-var-blue: var(--var-blue);
+  --color-chalk: var(--chalk-white);
+  --color-chalk-dim: var(--chalk-dim);
+  --color-danger: var(--danger-red);
+
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -59,77 +59,58 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-display: "Bebas Neue", "Inter", sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --radius: 1.25rem;
+
+  /* Brand palette (oklch of brief hex) */
+  --bg-stadium: oklch(0.155 0.018 252);          /* #0A0E14 */
+  --bg-stadium-soft: oklch(0.198 0.022 252);     /* #10161F */
+  --pitch-green: oklch(0.82 0.205 152);          /* #3DDC84 */
+  --floodlight-gold: oklch(0.81 0.145 75);       /* #F2B84B */
+  --var-blue: oklch(0.66 0.18 260);              /* #4C8DFF */
+  --chalk-white: oklch(0.955 0.005 252);         /* #EDF1F5 */
+  --chalk-dim: oklch(0.66 0.018 252);            /* #8B96A5 */
+  --danger-red: oklch(0.69 0.21 22);             /* #FF5C5C */
+
+  /* shadcn semantic mapping → stadium palette */
+  --background: var(--bg-stadium);
+  --foreground: var(--chalk-white);
+  --card: oklch(0.198 0.022 252 / 0.6);
+  --card-foreground: var(--chalk-white);
+  --popover: var(--bg-stadium-soft);
+  --popover-foreground: var(--chalk-white);
+  --primary: var(--pitch-green);
+  --primary-foreground: oklch(0.15 0.02 252);
+  --secondary: oklch(0.26 0.025 252);
+  --secondary-foreground: var(--chalk-white);
+  --muted: oklch(0.24 0.022 252);
+  --muted-foreground: var(--chalk-dim);
+  --accent: var(--floodlight-gold);
+  --accent-foreground: oklch(0.15 0.02 252);
+  --destructive: var(--danger-red);
+  --destructive-foreground: var(--chalk-white);
+  --border: oklch(1 0 0 / 0.10);
+  --input: oklch(1 0 0 / 0.08);
+  --ring: var(--pitch-green);
+
+  --sidebar: oklch(0.17 0.02 252 / 0.7);
+  --sidebar-foreground: var(--chalk-white);
+  --sidebar-primary: var(--pitch-green);
+  --sidebar-primary-foreground: oklch(0.15 0.02 252);
+  --sidebar-accent: oklch(1 0 0 / 0.05);
+  --sidebar-accent-foreground: var(--chalk-white);
+  --sidebar-border: oklch(1 0 0 / 0.08);
+  --sidebar-ring: var(--pitch-green);
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  /* App is dark-by-default; mirror :root */
 }
 
 @layer base {
@@ -137,8 +118,160 @@
     border-color: var(--color-border);
   }
 
-  body {
+  html, body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: oklch(0.82 0.205 152 / 0.35);
+    color: var(--color-chalk);
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-pitch);
+    outline-offset: 2px;
+    border-radius: 6px;
   }
 }
+
+/* ---------- Glass surface utilities ---------- */
+@utility glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 8px 32px rgba(61, 220, 132, 0.08);
+}
+
+@utility glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(61, 220, 132, 0.08);
+  transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+}
+
+@utility glass-card-hover {
+  &:hover {
+    border-color: rgba(61, 220, 132, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(61, 220, 132, 0.16);
+  }
+}
+
+@utility glass-card-lg {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 28px;
+  box-shadow: 0 16px 48px rgba(61, 220, 132, 0.10);
+}
+
+@utility glass-button {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  transition: border-color 180ms ease, background 180ms ease;
+  &:hover {
+    border-color: rgba(61, 220, 132, 0.45);
+    background: rgba(61, 220, 132, 0.08);
+  }
+}
+
+@utility glass-bar {
+  background: rgba(16, 22, 31, 0.55);
+  backdrop-filter: blur(24px) saturate(160%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@utility text-scoreboard {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+
+@utility text-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Floodlight ambient blobs ---------- */
+@keyframes floodlight-drift-a {
+  0%, 100% { transform: translate3d(-10%, -10%, 0) scale(1); }
+  50% { transform: translate3d(10%, 5%, 0) scale(1.15); }
+}
+@keyframes floodlight-drift-b {
+  0%, 100% { transform: translate3d(15%, 20%, 0) scale(1.05); }
+  50% { transform: translate3d(-5%, -10%, 0) scale(0.9); }
+}
+@keyframes floodlight-drift-c {
+  0%, 100% { transform: translate3d(5%, 60%, 0) scale(1); }
+  50% { transform: translate3d(-15%, 30%, 0) scale(1.2); }
+}
+
+.floodlight-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  pointer-events: none;
+  will-change: transform;
+}
+.floodlight-a {
+  width: 60vw; height: 60vw;
+  top: -20vw; left: -10vw;
+  background: radial-gradient(circle, oklch(0.82 0.205 152 / 0.28), transparent 70%);
+  animation: floodlight-drift-a 22s ease-in-out infinite;
+}
+.floodlight-b {
+  width: 55vw; height: 55vw;
+  top: 10vh; right: -15vw;
+  background: radial-gradient(circle, oklch(0.66 0.18 260 / 0.32), transparent 70%);
+  animation: floodlight-drift-b 28s ease-in-out infinite;
+}
+.floodlight-c {
+  width: 70vw; height: 70vw;
+  bottom: -30vw; left: 20vw;
+  background: radial-gradient(circle, oklch(0.81 0.145 75 / 0.15), transparent 70%);
+  animation: floodlight-drift-c 34s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floodlight-a, .floodlight-b, .floodlight-c { animation: none; }
+}
+
+/* ---------- Scoreboard ticker marquee ---------- */
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 60s linear infinite;
+}
+.ticker-wrap:hover .ticker-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; }
+}
+
+/* Pulse for live indicator */
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(61, 220, 132, 0.6); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 8px rgba(61, 220, 132, 0); }
+}
+.live-dot {
+  animation: live-pulse 1.6s ease-in-out infinite;
+}
+
+/* Hide horizontal scrollbar on rails */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }

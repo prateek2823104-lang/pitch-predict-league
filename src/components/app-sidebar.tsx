@@ -9,7 +9,6 @@ import {
   Swords,
   Tv,
   MessageCircle,
-  Image as ImageIcon,
   Coins,
   Bell,
   User,
@@ -33,7 +32,6 @@ const items: NavItem[] = [
   { to: "/battles", label: "Battles", Icon: Swords },
   { to: "/watch-parties", label: "Watch Parties", Icon: Tv },
   { to: "/community", label: "Fan Rooms", Icon: MessageCircle },
-  { to: "/community", label: "Meme Feed", Icon: ImageIcon },
   { to: "/store", label: "Coin Store", Icon: Coins },
   { to: "/notifications", label: "Notifications", Icon: Bell },
 ];
@@ -42,7 +40,10 @@ export function AppSidebar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
-    <aside className="glass sticky top-[3.5rem] hidden h-[calc(100vh-3.5rem)] w-56 shrink-0 flex-col gap-1 overflow-y-auto border-r border-white/5 p-3 md:flex">
+    <aside className="sticky top-[3.5rem] hidden h-[calc(100vh-3.5rem)] w-60 shrink-0 flex-col gap-0.5 overflow-y-auto border-r border-white/5 bg-[#0d0d0d]/60 px-3 py-4 md:flex">
+      <div className="mb-3 px-3 text-[10px] font-bold uppercase tracking-[0.22em] text-chalk-dim">
+        Command
+      </div>
       {items.map((item, i) => {
         const active = pathname === item.to;
         return (
@@ -50,24 +51,30 @@ export function AppSidebar() {
             key={`${item.to}-${i}`}
             to={item.to as any}
             className={[
-              "flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition-colors",
+              "group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors",
               active
-                ? "bg-pitch/15 text-chalk border border-pitch/30"
-                : "text-chalk-dim hover:bg-white/5 hover:text-chalk border border-transparent",
+                ? "bg-white/[0.04] text-chalk"
+                : "text-chalk-dim hover:bg-white/[0.03] hover:text-chalk",
             ].join(" ")}
           >
-            <item.Icon className={`h-4 w-4 ${active ? "text-pitch" : ""}`} />
-            <span className="truncate">{item.label}</span>
+            {active && (
+              <span
+                aria-hidden
+                className="absolute left-0 top-1/2 h-6 w-[2px] -translate-y-1/2 rounded-full bg-[#c9a84c] shadow-[0_0_10px_rgba(201,168,76,0.6)]"
+              />
+            )}
+            <item.Icon className={`h-[18px] w-[18px] ${active ? "text-[#c9a84c]" : ""}`} />
+            <span className="truncate font-medium">{item.label}</span>
           </Link>
         );
       })}
       <Link
         to="/profile/$username"
         params={{ username: "you" }}
-        className="mt-auto flex items-center gap-3 rounded-xl border border-transparent px-3 py-2 text-sm text-chalk-dim transition-colors hover:bg-white/5 hover:text-chalk"
+        className="mt-auto flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-chalk-dim transition-colors hover:bg-white/[0.03] hover:text-chalk"
       >
-        <User className="h-4 w-4" />
-        Profile
+        <User className="h-[18px] w-[18px]" />
+        <span className="font-medium">Profile</span>
       </Link>
     </aside>
   );
@@ -92,10 +99,10 @@ export function MobileBottomNav() {
             key={item.label}
             to={item.to as any}
             params={item.params as any}
-            className="flex flex-col items-center gap-0.5 px-3 py-1"
+            className="flex flex-col items-center gap-1 px-3 py-1"
           >
-            <item.Icon className={`h-5 w-5 ${active ? "text-pitch" : "text-chalk-dim"}`} />
-            <span className={`text-[10px] ${active ? "text-pitch" : "text-chalk-dim"}`}>
+            <item.Icon className={`h-5 w-5 ${active ? "text-[#c9a84c]" : "text-chalk-dim"}`} />
+            <span className={`text-[10px] font-medium ${active ? "text-[#c9a84c]" : "text-chalk-dim"}`}>
               {item.label}
             </span>
           </Link>
